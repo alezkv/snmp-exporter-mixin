@@ -40,7 +40,7 @@ local datasource = dashboard.variable.datasource;
       dashboard.variable.query.refresh.onTime() +
         {
           local query = |||
-              query_result(group(label_replace(ifHCInOctet{target=~"$target"}, "interfaceSelector", "$1", "ifName", "(.*)") or label_replace(ifHCInOctet{target=~"$target"}, "interfaceSelector", "$1", "ifAlias", "(.*)")) by (interfaceSelector))
+              query_result(group(label_replace(ifHCInOctets{target=~"$target"}, "interfaceSelector", "$1", "ifName", "(.*)") or label_replace(ifHCInOctets{target=~"$target"}, "interfaceSelector", "$1", "ifAlias", "(.*)")) by (interfaceSelector))
             |||,
           query: query,
         },
