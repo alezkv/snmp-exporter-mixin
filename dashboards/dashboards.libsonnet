@@ -49,7 +49,7 @@ local datasource = dashboard.variable.datasource;
                     grafonnet.panel.stat.queryOptions.withTargets([
                       grafonnet.query.prometheus.new(
                         '$datasource',
-                        'count(sum by (target) (snmp_scrape_packets_sent{module="if_mib"}))',
+                        'count(sum by (target) (snmp_scrape_packets_sent{module="%s"}))' % $._config.module,
                       ),
                     ]) +
                     grafonnet.panel.stat.standardOptions.withUnit('none'),
@@ -59,7 +59,7 @@ local datasource = dashboard.variable.datasource;
       grafonnet.panel.stat.queryOptions.withTargets([
         grafonnet.query.prometheus.new(
           '$datasource',
-          'sum(snmp_scrape_pdus_returned{module="if_mib"})',
+          'sum(snmp_scrape_pdus_returned{module="%s"})' % $._config.module,
         ),
       ]) +
       grafonnet.panel.stat.standardOptions.withUnit('none'),
@@ -125,8 +125,8 @@ local datasource = dashboard.variable.datasource;
         grafonnet.query.prometheus.new(
           '$datasource',
           |||
-            sum by (target) (snmp_scrape_duration_seconds{module="if_mib"})
-          |||,
+            sum by (target) (snmp_scrape_duration_seconds{module="%s"})
+          ||| % $._config.module,
         ) +
         grafonnet.query.prometheus.withLegendFormat(
           '{{target}}'
