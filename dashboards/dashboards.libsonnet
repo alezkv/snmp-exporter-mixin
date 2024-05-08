@@ -210,7 +210,8 @@ local datasource = dashboard.variable.datasource;
         grafonnet.util.grid.makeGrid([ifNumberStatPanel('')], panelWidth=24, panelHeight=4, startY=4) +
         grafonnet.util.grid.makeGrid([scrapeDurationStatPanel], panelWidth=24, panelHeight=4, startY=8)
       ) +
-      dashboard.withUid('snmp-exporter-ifmib-overview-x9rrb4a'),
+      dashboard.withUid('snmp-exporter-ifmib-overview-x9rrb4a') +
+      dashboard.withTimezone($._config.timezone),
 
 
     'snmp_exporter_if_mib_traffic.json':
@@ -223,6 +224,7 @@ local datasource = dashboard.variable.datasource;
         grafonnet.util.grid.makeGrid([traffic], panelWidth=24, panelHeight=8, startY=4)
       ) +
       dashboard.withUid('snmp-exporter-ifmib-traffic-w2s9a8c') +
+      dashboard.withTimezone($._config.timezone) +
       dashboard.withLinks([
         dashboard.link.link.new('Summary', 'd/snmp-exporter-ifmib-overview-x9rrb4a/snmp-if-mib-overview'),
       ]),
